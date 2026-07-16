@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Order Items{% endblock %}
+{% block content %}
+<h1 class="mb-4">Order Items</h1>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead class="table-warning">
+      <tr>
+        <th>ID</th><th>Order</th><th>Product</th><th>Quantity</th><th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for oi in orderitems %}
+      <tr>
+        <td>{{ oi.id }}</td>
+        <td>{{ oi.order.id }}</td>
+        <td>{{ oi.product.name }}</td>
+        <td>{{ oi.quantity }}</td>
+        <td>{{ oi.price }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

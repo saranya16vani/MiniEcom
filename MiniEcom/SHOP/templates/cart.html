@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4 text-light fw-bold">🛒 Your Cart</h2>
+
+<div class="row">
+  {% for item in cart.cartitem_set.all %}
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card shadow-sm border-0">
+        {% if item.product.image %}
+          <img src="{{ item.product.image.url }}" class="card-img-top" alt="{{ item.product.name }}" style="height:150px; object-fit:cover;">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-primary">{{ item.product.name }}</h5>
+          <p class="card-text">
+            <span class="badge bg-info text-dark">Qty: {{ item.quantity }}</span>
+            <span class="fw-bold text-success">₹{{ item.subtotal }}</span>
+          </p>
+          <div class="d-flex justify-content-between">
+            <a href="{% url 'update_cart' item.id 'increase' %}" class="btn btn-sm btn-success"><i class="bi bi-plus-lg"></i></a>
+            <a href="{% url 'update_cart' item.id 'decrease' %}" class="btn btn-sm btn-warning"><i class="bi bi-dash-lg"></i></a>
+            <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i> Remove</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-light">Your cart is empty.</p>
+  {% endfor %}
+</div>
+
+<!-- Cart Summary Box -->
+<div class="mt-4 p-4 bg-dark text-light rounded shadow-lg">
+  <h4 class="fw-bold mb-3">🧾 Cart Summary</h4>
+  <p class="mb-1">Total Items: <span class="fw-bold text-info">{{ cart.cartitem_set.count }}</span></p>
+  <p class="mb-3">Total Price: <span class="fw-bold text-warning">₹{{ cart.total_price }}</span></p>
+  <div class="d-flex gap-3 flex-wrap">
+    <a href="{% url 'checkout' %}" class="btn btn-lg btn-primary shadow-sm" style="box-shadow:0 0 10px #00f;">
+      <i class="bi bi-credit-card"></i> Checkout
+    </a>
+    <a href="{% url 'product_list' %}" class="btn btn-lg btn-secondary">
+      <i class="bi bi-arrow-left"></i> Continue Shopping
+    </a>
+    {% if cart.cartitem_set.count > 0 %}
+      <form method="post" action="{% url 'clear_cart' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-lg btn-danger">
+          <i class="bi bi-x-circle"></i> Clear Cart
+        </button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

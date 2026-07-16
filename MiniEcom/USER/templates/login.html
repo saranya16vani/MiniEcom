@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Login</h2>
+<form method="post" class="card p-4 shadow-sm">
+  {% csrf_token %}
+  <div class="mb-3">
+     <label>Username</label>
+     <input type="text" name="username" class="form-control" autocomplete="off">
+  </div>
+  <div class="mb-3">
+     <label>Password</label>
+     <input type="password" name="password" class="form-control" autocomplete="off">
+  </div>
+
+  <button type="submit" class="btn btn-success">Login</button>
+</form>
+{% endblock %}
