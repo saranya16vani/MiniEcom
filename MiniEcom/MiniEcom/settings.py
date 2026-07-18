@@ -12,9 +12,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*3a!nyd!6gh%@92%k+&j2j!#a*v(1j7umy@yxuj6wvu)zodfd6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False   # ✅ Turned off for deployment
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'saranya16vani.pythonanywhere.com'
+]
+
+# ✅ Needed for CSRF protection in production
+CSRF_TRUSTED_ORIGINS = [
+    'https://saranya16vani.pythonanywhere.com'
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -44,7 +53,7 @@ ROOT_URLCONF = 'MiniEcom.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # add templates folder support
+        'DIRS': [BASE_DIR / "templates"],  # templates folder support
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -59,7 +68,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'MiniEcom.wsgi.application'
 
-# Database
+# Database (SQLite for dev; switch to PostgreSQL/MySQL for production if needed)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -77,14 +86,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'   # ✅ Local timezone
 USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]  # development static folder
-STATIC_ROOT = BASE_DIR / 'staticfiles'    # collected static files for deployment
+STATICFILES_DIRS = [BASE_DIR / "static"]   # dev static folder
+STATIC_ROOT = BASE_DIR / 'staticfiles'     # collected static files for deployment
 
 # Media files (uploads)
 MEDIA_URL = '/media/'
@@ -103,3 +112,16 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.BasicAuthentication",
     ],
 }
+
+# ✅ Optional: login/logout redirects
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'shop:home'   # adjust to your app’s home view
+LOGOUT_REDIRECT_URL = 'login'
+
+# ✅ Optional: email backend (for password reset, notifications)
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
