@@ -156,3 +156,9 @@ def order_list(request):
 def profile(request):
     customer, created = Customer.objects.get_or_create(user=request.user)
     return render(request, "profile.html", {"customer": customer})
+
+
+from django.shortcuts import render
+
+def home(request):
+    return render(request, "home.html")

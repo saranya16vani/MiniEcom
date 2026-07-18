@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}MiniEcom Admin{% endblock %}
+
+{% block branding %}
+<div style="display:flex; align-items:center; gap:15px;">
+  <img src="{% static 'images/shop-bg.jpg' %}" alt="Logo" style="height:60px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,0.3);">
+  <h1 id="site-name" style="color:#fff; font-weight:bold; text-shadow:2px 2px 4px #000;">
+    MiniEcom Admin Dashboard
+  </h1>
+</div>
+
+<!-- Add descriptive paragraph -->
+<div id="admin-description">
+  <p>
+    <strong>MiniEcom</strong> is a demonstration e‑commerce platform built with Django.  
+    It highlights the essential features of an online store, including product listings, customer management, and order tracking.  
+    This project showcases how a cloud‑hosted Django application can integrate static and media files,  
+    provide a secure admin interface, and deliver a responsive Bootstrap‑styled homepage.  
+    The admin panel serves as the control center where administrators can manage inventory, monitor customer activity,  
+    and ensure smooth operation of the store.  
+  </p>
+</div>
+{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}

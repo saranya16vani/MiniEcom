@@ -90,14 +90,12 @@ TIME_ZONE = 'Asia/Kolkata'   # ✅ Local timezone
 USE_I18N = True
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]   # dev static folder
-STATIC_ROOT = BASE_DIR / 'staticfiles'     # collected static files for deployment
+STATICFILES_DIRS = [BASE_DIR / "MiniEcom/static", BASE_DIR / "SHOP/static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Media files (uploads)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

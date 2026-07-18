@@ -1,0 +1,45 @@
+/* Gradient header with shadow */
+#header {
+    background: linear-gradient(90deg, #0d6efd, #6610f2);
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Branding paragraph styling */
+#admin-description {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    color: #ffe082;
+    font-size: 15px;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+/* Dashboard module headings */
+#content-main .module h2 {
+    background-color: #f8f9fa;
+    color: #0d6efd;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for modules */
+#content-main .module h2:hover {
+    background-color: #e9ecef;
+    color: #6610f2;
+    transform: scale(1.05);
+}
+
+/* Links inside admin */
+a {
+    color: #0d6efd;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #6610f2;
+    text-decoration: underline;
+}
